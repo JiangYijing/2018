@@ -1,4 +1,4 @@
-#Populating Next Right Pointers in Each Node
+# Populating Next Right Pointers in Each Node
 ## 问题分析：
 树的层序遍历,完全二叉树所以左节点存在则右节点也存在,利用递归解决
 ## 编程实现：
