@@ -1,0 +1,34 @@
+# Flood Fill
+## 问题分析：
+洪水填充,给定一个二维数组表示的图像,不同的数字代表不同的颜色,给定一个起始点坐标,要求把起始点的颜色以及其相邻的同样的颜色都换成新的颜色,即找相同区间
+## 编程实现：
+```C++
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int m=image.size(),n=image[0].size(),color=image[sr][sc];
+        vector<vector<int>> res=image;
+        vector<vector<int>> dirs{{0,-1},{-1,0},{0,1},{1,0}};
+        queue<pair<int, int>> q{{{sr,sc}}};
+        while(!q.empty()) 
+        {
+            int len=q.size();
+            for(int i=0;i<len;++i)
+            {
+                auto t=q.front(); 
+                q.pop();
+                res[t.first][t.second]=newColor;
+                for(auto dir:dirs) 
+                {
+                    int x=t.first+dir[0], 
+                    int y=t.second+dir[1];
+                    if(x<0||x>=m||y<0||y>=n||res[x][y]!=color) 
+                    continue;
+                    q.push({x,y});
+                }
+            }
+        }
+        return res;
+    }
+};
+```
